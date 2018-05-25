@@ -1,0 +1,43 @@
+\chapter{ANOTHER CHAPTER}
+chapter text here
+\section{SECTION SAMPLE}
+Long acronym: \acrlong{abrv1}\\
+Short acronym: \acrshort{abrv2}\\
+Full acronym: \acrfull{abrv3}
+\subsection{SUBSECTION SAMPLE}
+some words:
+\begin{itemize}
+  \item lower case: \gls{Word 1}
+  \item sentence case:\Gls{Word 2}
+  \item lower case plural form: \glspl{Word 1}
+  \item sentence case plural form:\Glspl{Word 1}
+\end{itemize}
+
+Cite something~\cite{online1}
+
+Cite misc~\cite{misc1}
+
+Cite article~\cite{article1}
+
+Cite incollection~\cite{incollection1}
+
+text with footnote~\footnote{Footnote with url: \url{https://link/to/some/site}}.
+
+\subsubsection{a subsubsection}
+\begin{table}[H]
+  \centering
+  \caption{Sample Table}\label{tab:1}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \multicolumn{2}{|c|}{}&\multicolumn{2}{c|}{Some text}\\
+    \cline{3-4}
+    \multicolumn{2}{|c|}{}&Yes&No\\
+    \hline
+    \multirow{2}{*}{text}&text&text&text\\
+    \cline{2-4}
+    &text&text&text\\
+    \hline
+  \end{tabular}
+\end{table}
+
+There is a table above: Table~\ref{tab:1}

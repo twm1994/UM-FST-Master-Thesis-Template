@@ -1,0 +1,178 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage{anysize}
+% \marginsize{3.81cm}{2.54cm}{2.54cm}{2.54cm} % use this margin for printing
+\marginsize{2.54cm}{2.54cm}{2.54cm}{2.54cm} % use this margin for viewing
+
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\usepackage{url}
+
+\usepackage[nottoc]{tocbibind} % show bibiliography in table of contents without numbering
+
+\usepackage[titles]{tocloft}
+% add dots to table of content
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % for chapters
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % for sections
+
+\renewcommand{\appendixname}{APPENDIX} % change the name before using the appendix package
+\usepackage{appendix}
+
+
+\usepackage{titlesec}
+% centering chapter title and remove page number of the first page of every chapter
+ % use \chaptertitlename to add chapter or appendix prefix automatically
+\makeatletter
+\titleformat{\chapter}[hang]
+  {\large\bfseries\filcenter}
+  {\MakeUppercase{\chaptertitlename}~\thechapter:~}
+  {0em}
+  {\thispagestyle{empty}}
+\makeatother
+
+
+% formatting section, subsection and subsubsection title
+\titleformat{\section}
+{\large\bfseries}{\thesection~}{0em}{\MakeUppercase}
+
+\titleformat{\subsection}
+{\normalsize\bfseries}{\thesubsection~}{0em}{\MakeUppercase}
+
+\titleformat{\subsubsection}
+{\normalsize\bfseries}{}{0em}{\MakeLowercase}
+
+% add chapter prefix to table of contents
+\renewcommand{\cftchappresnum}{\MakeUppercase{\chaptertitlename}~}
+\renewcommand{\cftchapaftersnum}{:}
+\newlength{\toclen}
+\settowidth{\toclen}{\cftchappresnum\cftchapaftersnum}
+\addtolength{\cftchapnumwidth}{\toclen}
+
+% \makeatletter
+% \g@addto@macro\appendix{%
+%   \addtocontents{toc}{%
+%     \protect\renewcommand{\protect\cftchappresnum}{APPENDIX~}%
+%     \renewcommand{\cftchapaftersnum}{:}
+%     \newlength{\toclen}
+%     \settowidth{\toclen}{\cftchappresnum\cftchapaftersnum}
+%     \addtolength{\cftchapnumwidth}{\toclen}
+%   }%
+% }
+% \makeatother
+
+% set font style in table of contents
+\renewcommand{\cftchapfont}{\normalsize\rmfamily}
+\renewcommand{\cftsecfont}{\normalsize\rmfamily}
+\renewcommand{\cftsubsecfont}{\normalsize\rmfamily}
+\renewcommand{\cftfigfont}{\normalsize\rmfamily}
+\renewcommand{\cfttabfont}{\normalsize\rmfamily}
+\renewcommand{\cftchappagefont}{\normalsize\rmfamily}
+
+% add Figure prefix
+\newlength{\loflen}
+\renewcommand{\cftfigpresnum}{\figurename~}
+\renewcommand{\cftfigaftersnum}{:}
+\renewcommand{\cftfigindent}{0em}
+\settowidth{\loflen}{\cftfigpresnum\cftfigaftersnum}
+\addtolength{\cftfignumwidth}{\loflen}
+
+% add Table prefix
+\newlength{\lotlen}
+\renewcommand{\cfttabpresnum}{\tablename~}
+\renewcommand{\cfttabaftersnum}{:}
+\renewcommand{\cfttabindent}{0em}
+\settowidth{\lotlen}{\cfttabpresnum\cfttabaftersnum}
+\addtolength{\cfttabnumwidth}{\lotlen}
+
+\usepackage[toc,acronyms,nonumberlist,nopostdot]{glossaries}
+\makenoidxglossaries
+% \makeglossaries
+\input{contents/glossary}
+% \loadglsentries{contents/glossary}
+
+\usepackage{multirow}
+\usepackage{float} % allow the use of H for positioning
+
+\usepackage{setspace}
+\onehalfspacing
+
+\setlength{\parindent}{0pt} % no indent
+
+\setcounter{tocdepth}{2} % no subsubsection in table of contents
+
+\usepackage[hang,flushmargin]{footmisc} % no footnote indentation
+
+\renewcommand{\contentsname}{\hfill\large\bfseries TABLE OF CONTENTS\hfill}
+\renewcommand{\cftaftertoctitle}{\hfill}
+
+\renewcommand{\listfigurename}{\normalsize\rmfamily LIST OF FIGURES}
+
+\renewcommand{\listtablename}{\normalsize\rmfamily LIST OF TABLES}
+
+\renewcommand{\bibname}{BIBILIOGRAPHY}
+
+% remove numbering of section and subsection in table of contents
+% \makeatletter
+% \let\latexl@section\l@section
+% \def\l@section#1#2{\begingroup\let\numberline\@gobble\latexl@section{#1}{#2}\endgroup}
+% \makeatother
+
+% \makeatletter
+% \let\latexl@subsection\l@subsection
+% \def\l@subsection#1#2{\begingroup\let\numberline\@gobble\latexl@subsection{#1}{#2}\endgroup}
+% \makeatother
+
+\begin{document}
+\input{contents/cover}
+\input{contents/preliminary}
+\input{contents/abstract}
+\newpage
+\pagenumbering{roman}
+% \thispagestyle{empty}
+% \begin{spacing}{1}
+\tableofcontents
+% \end{spacing}
+\newpage
+\thispagestyle{plain}
+\listoffigures
+\addtocontents{lof}{{\textit{Number}}~\hfill{\textit{Page}}\par}
+\newpage
+\thispagestyle{plain}
+\listoftables
+\addtocontents{lot}{{\textit{Number}}~\hfill{\textit{Page}}\par}
+\newpage
+\thispagestyle{plain}
+% \printglossary[title=Glossary,toctitle=Glossary]
+% \printglossary[type=\acronymtype,title=LIST OF ABBREVIATIONS,toctitle=LIST OF ABBREVIATIONS]
+% \glsaddall
+\printnoidxglossaries
+% \glsaddall
+% \printglossaries
+% \printnoidxglossaries[type=\acronymtype]
+\newpage
+\input{contents/preface}
+\newpage
+\input{contents/acknowledgments}
+\newpage
+\input{contents/dedication}
+\newpage
+\pagenumbering{arabic}
+\input{contents/chapter_1}
+\input{contents/chapter_2}
+\input{contents/chapter_3}
+\bibliography{contents/reference}
+\bibliographystyle{IEEEtran}
+\begin{appendices}
+  \input{contents/appendix_a}
+  \input{contents/appendix_b}
+  \input{contents/appendix_c}
+\end{appendices}
+% \appendix
+%   \input{contents/appendix_a}
+%   \input{contents/appendix_b}
+%   \input{contents/appendix_c}
+\end{document}
